@@ -24,11 +24,13 @@ import lombok.Getter;
 /**
  * Called whenever a player unregisters the CB plugin channel
  */
-public final class PlayerUnregisterCBEvent extends Event
-{
-    @Getter private static HandlerList handlerList = new HandlerList();
+public final class PlayerUnregisterCBEvent extends Event {
 
-    @Getter private final Player player;
+    @Getter
+    private static HandlerList handlerList = new HandlerList();
+
+    @Getter
+    private final Player player;
 
     public PlayerUnregisterCBEvent(Player player) {
         this.player = player;

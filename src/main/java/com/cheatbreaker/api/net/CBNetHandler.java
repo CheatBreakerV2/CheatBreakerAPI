@@ -30,7 +30,7 @@ public abstract class CBNetHandler implements ICBNetHandlerServer
 {
     @Override
     public void handleVoice(CBPacketClientVoice packet) {
-        Player player = packet.getAttachment();
+        Player player = (Player) packet.getAttachment();
         VoiceChannel channel = CheatBreakerAPI.getInstance().getPlayerActiveChannels().get(player.getUniqueId());
         if (channel == null) return;
 
@@ -41,13 +41,13 @@ public abstract class CBNetHandler implements ICBNetHandlerServer
 
     @Override
     public void handleVoiceChannelSwitch(CBPacketVoiceChannelSwitch packet) {
-        Player player = packet.getAttachment();
+        Player player = (Player) packet.getAttachment();
         CheatBreakerAPI.getInstance().setActiveChannel(player, packet.getSwitchingTo());
     }
 
     @Override
     public void handleVoiceMute(CBPacketVoiceMute packet) {
-        Player player = packet.getAttachment();
+        Player player = (Player) packet.getAttachment();
         UUID muting = packet.getMuting();
 
         VoiceChannel channel = CheatBreakerAPI.getInstance().getPlayerActiveChannels().get(player.getUniqueId());

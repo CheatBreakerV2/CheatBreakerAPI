@@ -24,11 +24,13 @@ import lombok.Getter;
 /**
  * Called whenever a player registers the CB plugin channel
  */
-public final class PlayerRegisterCBEvent extends Event
-{
-    @Getter private static HandlerList handlerList = new HandlerList();
+public final class PlayerRegisterCBEvent extends Event {
 
-    @Getter private final Player player;
+    @Getter
+    private static HandlerList handlerList = new HandlerList();
+
+    @Getter
+    private final Player player;
 
     public PlayerRegisterCBEvent(Player player) {
         this.player = player;

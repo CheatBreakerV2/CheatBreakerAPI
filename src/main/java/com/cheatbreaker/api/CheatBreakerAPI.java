@@ -54,18 +54,22 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
 
     private static final String MESSAGE_CHANNEL = "CB-Client";
 
-    @Getter private static CheatBreakerAPI instance;
+    @Getter
+    private static CheatBreakerAPI instance;
     private final Set<UUID> playersRunningCheatBreaker = new HashSet<>();
 
     private final Set<UUID> playersNotRegistered = new HashSet<>();
 
-    @Setter private CBNetHandler netHandlerServer = new CBNetHandlerImpl();
+    @Setter
+    private CBNetHandler netHandlerServer = new CBNetHandlerImpl();
 
     private boolean voiceEnabled;
 
-    @Getter private List<VoiceChannel> voiceChannels = new ArrayList<>();
+    @Getter
+    private List<VoiceChannel> voiceChannels = new ArrayList<>();
 
-    @Getter private final Map<UUID, VoiceChannel> playerActiveChannels = new HashMap<>();
+    @Getter
+    private final Map<UUID, VoiceChannel> playerActiveChannels = new HashMap<>();
 
     private final Map<UUID, List<CBPacket>> packetQueue = new HashMap<>();
 
@@ -164,7 +168,7 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
                     }
 
                 }
-        , this);
+                , this);
     }
 
     public String getWorldIdentifier(World world) {
@@ -383,11 +387,11 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
     }
 
     /*
-    *  This is a boolean to indicate whether or not a CB message was sent.
-    *  An example use-case is when you want to send a CheatBreaker
-    *  notification if a player is running CheatBreaker, and a chat
-    *  message if not.
-    */
+     *  This is a boolean to indicate whether or not a CB message was sent.
+     *  An example use-case is when you want to send a CheatBreaker
+     *  notification if a player is running CheatBreaker, and a chat
+     *  message if not.
+     */
     public boolean sendPacket(Player player, CBPacket packet) {
         if (isRunningCheatBreaker(player)) {
             player.sendPluginMessage(this, MESSAGE_CHANNEL, CBPacket.getPacketData(packet));
