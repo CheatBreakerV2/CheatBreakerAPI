@@ -25,8 +25,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
-public class VoiceChannel
-{
+public class VoiceChannel {
     private final String name;
 
     private final UUID uuid;
@@ -35,62 +34,53 @@ public class VoiceChannel
 
     private final List<Player> playersListening = new ArrayList<>();
 
-    public VoiceChannel(String name)
-    {
+    public VoiceChannel(String name) {
         this.name = name;
         this.uuid = UUID.randomUUID();
     }
 
-    public void addPlayer(Player player)
-    {
+    public void addPlayer(Player player) {
         if (hasPlayer(player)) return;
 
-        for (Player player1 : playersInChannel)
-        {
+        for (Player player1 : playersInChannel) {
             CheatBreakerAPI.getInstance().sendPacket(player1, new CBPacketVoiceChannelUpdate(0, uuid, player.getUniqueId(), player.getDisplayName()));
         }
 
         playersInChannel.add(player);
-        CheatBreakerAPI.getInstance().sendVoiceChannel(player, this);
+        CheatBreakerAPI.getInstance().getVoiceChatHandler().sendVoiceChannel(player, this);
     }
 
-    public boolean removePlayer(Player player)
-    {
+    public boolean removePlayer(Player player) {
         if (!hasPlayer(player)) return false;
 
-        for (Player player1 : playersInChannel)
-        {
+        for (Player player1 : playersInChannel) {
             if (player1 == player) continue;
             CheatBreakerAPI.getInstance().sendPacket(player1, new CBPacketVoiceChannelUpdate(1, uuid, player.getUniqueId(), player.getDisplayName()));
         }
 
         CheatBreakerAPI.getInstance().sendPacket(player, new CBPacketDeleteVoiceChannel(uuid));
-        CheatBreakerAPI.getInstance().getPlayerActiveChannels().remove(player.getUniqueId());
+        CheatBreakerAPI.getInstance().getVoiceChatHandler().getPlayerActiveChannels().remove(player.getUniqueId());
 
         playersListening.removeIf(player1 -> player1 == player);
         return playersInChannel.removeIf(player1 -> player1 == player);
     }
 
-    private boolean addListening(Player player)
-    {
+    private boolean addListening(Player player) {
         if (!hasPlayer(player) || isListening(player)) return false;
 
         playersListening.add(player);
 
-        for (Player player1 : playersInChannel)
-        {
+        for (Player player1 : playersInChannel) {
             CheatBreakerAPI.getInstance().sendPacket(player1, new CBPacketVoiceChannelUpdate(2, uuid, player.getUniqueId(), player.getDisplayName()));
         }
 
         return true;
     }
 
-    private boolean removeListening(Player player)
-    {
+    private boolean removeListening(Player player) {
         if (!isListening(player)) return false;
 
-        for (Player player1 : playersInChannel)
-        {
+        for (Player player1 : playersInChannel) {
             if (player1 == player) continue;
             CheatBreakerAPI.getInstance().sendPacket(player1, new CBPacketVoiceChannelUpdate(3, uuid, player.getUniqueId(), player.getDisplayName()));
         }
@@ -98,37 +88,32 @@ public class VoiceChannel
         return playersListening.removeIf(player1 -> player1 == player);
     }
 
-    public void setActive(Player player)
-    {
+    public void setActive(Player player) {
         CheatBreakerAPI api = CheatBreakerAPI.getInstance();
-        Optional.ofNullable(api.getPlayerActiveChannels().get(player.getUniqueId())).ifPresent(c -> {
+        Optional.ofNullable(api.getVoiceChatHandler().getPlayerActiveChannels().get(player.getUniqueId())).ifPresent(c -> {
             if (c != this) c.removeListening(player);
         });
         if (addListening(player)) {
-            api.getPlayerActiveChannels().put(player.getUniqueId(), this);
+            api.getVoiceChatHandler().getPlayerActiveChannels().put(player.getUniqueId(), this);
         }
     }
 
-    public boolean validatePlayers()
-    {
+    public boolean validatePlayers() {
         return playersInChannel.removeIf(Objects::isNull) || playersListening.removeIf(player -> !playersInChannel.contains(player));
     }
 
-    public boolean hasPlayer(Player player)
-    {
+    public boolean hasPlayer(Player player) {
         return playersInChannel.contains(player);
     }
 
-    public boolean isListening(Player player)
-    {
+    public boolean isListening(Player player) {
         return playersListening.contains(player);
     }
 
     /**
      * Convert this to the map that will be sent over the net channel
      */
-    public Map<UUID, String> toPlayersMap()
-    {
+    public Map<UUID, String> toPlayersMap() {
         return playersInChannel.stream()
                 .collect(Collectors.toMap(
                         Player::getUniqueId,
@@ -139,8 +124,7 @@ public class VoiceChannel
     /**
      * Convert this to the map that will be sent over the net channel
      */
-    public Map<UUID, String> toListeningMap()
-    {
+    public Map<UUID, String> toListeningMap() {
         return playersListening.stream()
                 .collect(Collectors.toMap(
                         Player::getUniqueId,
