@@ -1,5 +1,5 @@
 ```java
-CheatBreakerApi cbApi = (CheatBreakerApi) Bukkit.getPluginManager().getPlugin("CheatBreakerAPI");
+CheatBreakerAPI cbApi = (CheatBreakerAPI) Bukkit.getPluginManager().getPlugin("CheatBreakerAPI");
 String message = ChatColor.GREEN + "You have joined the HCTeams queue.";
 
 cbApi.getNotificationHandler().sendNotificationOrFallback(
