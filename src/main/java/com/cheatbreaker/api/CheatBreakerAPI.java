@@ -20,6 +20,7 @@ import com.cheatbreaker.api.listener.*;
 import com.cheatbreaker.api.net.*;
 import com.cheatbreaker.api.net.event.*;
 import com.cheatbreaker.nethandler.CBPacket;
+import com.comphenix.protocol.ProtocolLibrary;
 import com.google.common.collect.ImmutableSet;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,17 +45,28 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
     private CBNetHandler netHandlerServer = new CBNetHandlerImpl();
     public final Map<UUID, List<CBPacket>> packetQueue = new HashMap<>();
 
-    @Getter private CooldownHandler cooldownHandler;
-    @Getter private HologramHandler hologramHandler;
-    @Getter private NametagHandler nametagHandler;
-    @Getter private NotificationHandler notificationHandler;
-    @Getter private ServerRuleHandler serverRuleHandler;
-    @Getter private StaffModuleHandler staffModuleHandler;
-    @Getter private TeammatesHandler teammatesHandler;
-    @Getter private TitleHandler titleHandler;
-    @Getter private VoiceChatHandler voiceChatHandler;
-    @Getter private WaypointHandler waypointHandler;
-    @Getter private WorldHandler worldHandler;
+    @Getter
+    private CooldownHandler cooldownHandler;
+    @Getter
+    private HologramHandler hologramHandler;
+    @Getter
+    private NametagHandler nametagHandler;
+    @Getter
+    private NotificationHandler notificationHandler;
+    @Getter
+    private ServerRuleHandler serverRuleHandler;
+    @Getter
+    private StaffModuleHandler staffModuleHandler;
+    @Getter
+    private TeammatesHandler teammatesHandler;
+    @Getter
+    private TitleHandler titleHandler;
+    @Getter
+    private VoiceChatHandler voiceChatHandler;
+    @Getter
+    private WaypointHandler waypointHandler;
+    @Getter
+    private WorldHandler worldHandler;
 
     @Override
     public void onEnable() {
@@ -87,14 +99,27 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new ConnectionListener(this), this);
     }
 
+    /**
+     * Check if a player is running CheatBreaker
+     * @param player The {@link Player}
+     * @return If the player is running CheatBreaker
+     */
     public boolean isRunningCheatBreaker(Player player) {
         return isRunningCheatBreaker(player.getUniqueId());
     }
 
+    /**
+     * Check if a player is running CheatBreaker
+     * @param playerUuid The {@link UUID} of the {@link Player}
+     * @return If the player is running CheatBreaker
+     */
     public boolean isRunningCheatBreaker(UUID playerUuid) {
         return playersRunningCheatBreaker.contains(playerUuid);
     }
 
+    /**
+     * @return List of {@link Player}'s that are running CheatBreaker
+     */
     public Set<Player> getPlayersRunningCheatBreaker() {
         return ImmutableSet.copyOf(playersRunningCheatBreaker
                 .stream()
@@ -103,6 +128,27 @@ public final class CheatBreakerAPI extends JavaPlugin implements Listener {
         );
     }
 
+    /**
+     * Get the protocol version of a {@link Player}
+     * @param player The {@link Player}
+     * @return The version that the user is on as a {@link String}
+     */
+    public String getVersion(Player player) {
+        switch (ProtocolLibrary.getProtocolManager().getProtocolVersion(player)) {
+            case 5:
+                return "1.7";
+            case 47:
+                return "1.8";
+            default:
+                return "N/A";
+        }
+    }
+
+    /**
+     * Check if a {@link UUID} is banned on CheatBreaker
+     * @param playerUuid The {@link UUID} of the {@link Player}
+     * @param resultListener A {@link Consumer<Boolean>} that returns if the {@link UUID} is banned
+     */
     public void isCheatBreakerBanned(UUID playerUuid, Consumer<Boolean> resultListener) {
         resultListener.accept(false);
     }
