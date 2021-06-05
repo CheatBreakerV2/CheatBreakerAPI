@@ -19,6 +19,7 @@ public class VoiceChatHandler {
     @Getter private List<VoiceChannel> voiceChannels = new ArrayList<>();
     @Getter private final Map<UUID, VoiceChannel> playerActiveChannels = new HashMap<>();
     public final Map<UUID, List<UUID>> muteMap = new HashMap<>();
+    public boolean voiceEnabled;
 
     public void createVoiceChannels(VoiceChannel... voiceChannels) {
         this.voiceChannels.addAll(Arrays.asList(voiceChannels));

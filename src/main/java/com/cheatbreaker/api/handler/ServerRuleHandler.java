@@ -20,8 +20,7 @@ public class ServerRuleHandler {
         plugin.sendPacket(player, new CBPacketServerRule(ServerRule.COMPETITIVE_GAMEMODE, isCompetitive));
     }
 
-    public void voiceEnabled(boolean enabled) {
-        plugin.voiceEnabled = enabled;
+    public void setVoiceEnabled(boolean enabled) {
+        plugin.getVoiceChatHandler().voiceEnabled = enabled;
     }
-
 }

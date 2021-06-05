@@ -40,7 +40,7 @@ public final class CBWaypoint {
             location.getBlockX(),
             location.getBlockY(),
             location.getBlockZ(),
-            CheatBreakerAPI.getInstance().getWorldIdentifier(location.getWorld()),
+            CheatBreakerAPI.getInstance().getWorldHandler().getWorldIdentifier(location.getWorld()),
             color,
             forced, visible
         );
@@ -52,7 +52,7 @@ public final class CBWaypoint {
                 location.getBlockX(),
                 location.getBlockY(),
                 location.getBlockZ(),
-                CheatBreakerAPI.getInstance().getWorldIdentifier(location.getWorld()),
+                CheatBreakerAPI.getInstance().getWorldHandler().getWorldIdentifier(location.getWorld()),
                 color,
                 forced,
                 true

@@ -27,7 +27,7 @@ public class RegisterChannelListener implements Listener {
 
         plugin.getVoiceChatHandler().muteMap.put(event.getPlayer().getUniqueId(), new ArrayList<>());
 
-        if (plugin.voiceEnabled) {
+        if (plugin.getVoiceChatHandler().voiceEnabled) {
             plugin.sendPacket(event.getPlayer(), new CBPacketServerRule(ServerRule.VOICE_ENABLED, true));
         }
 
@@ -38,6 +38,6 @@ public class RegisterChannelListener implements Listener {
         }
 
         plugin.getServer().getPluginManager().callEvent(new PlayerRegisterCBEvent(event.getPlayer()));
-        plugin.updateWorld(event.getPlayer());
+        plugin.getWorldHandler().updateWorld(event.getPlayer());
     }
 }
