@@ -9,13 +9,13 @@ The CheatBreaker API will allow you to detect when a player is running CheatBrea
 
 ## Reporting an issue
 
-If you suspect an issue you can submit one [here](https://github.com/cheatbreaker/cheatbreakerapi/issues).
+If you suspect an issue you can submit one [here](https://github.com/cheatbreakerv2/cheatbreakerapi/issues).
 
 ## Get the Source
 
 1. Install maven `sudo apt-get install maven`
 2. Verify installation `mvn -v`
-3. Clone the repository `git clone git@github.com:CheatBreaker/CheatBreakerAPI.git`
+3. Clone the repository `git clone git@github.com:CheatBreakerV2/CheatBreakerAPI.git`
 4. Navigate to the new folder `cd cheatbreakerapi`
 5. Import `pom.xml` into your IDE
 
@@ -27,11 +27,11 @@ If you suspect an issue you can submit one [here](https://github.com/cheatbreake
 
 ## Contributing
 
-You can submit a [pull request](https://github.com/CheatBreaker/CheatBreakerAPI/pulls) with your changes.
+You can submit a [pull request](https://github.com/CheatBreakerV2/CheatBreakerAPI/pulls) with your changes.
 
 ## Documentation
 
-Documentation can be found on the [wiki pages](https://github.com/cheatbreaker/cheatbreakerapi/wiki).
+Documentation can be found on the [wiki pages](https://github.com/cheatbreakerv2/cheatbreakerapi/wiki).
 
 ---
 
@@ -39,6 +39,7 @@ Documentation can be found on the [wiki pages](https://github.com/cheatbreaker/c
 
 **General:** Approved for public release on 12/29/2019.
 
-**Details:** This release is not supported or maintained and was released only to showcase some of the early functionality and things that were possible with the CheatBreaker Bukkit API. Keep in mind, this was an internal version of the API that was going to be overhauled for a public release. Additionally, this project depends on [CheatBreaker/CheatBreakerAPINetHandler](https://github.com/CheatBreaker/CheatBreakerAPINetHandler), which is not publicly available at this time.
+**Details:** This release is not supported or maintained and was released only to showcase some of the early functionality and things that were possible with the CheatBreaker Bukkit API. Keep in mind, this was an internal version of the API that was going to be overhauled for a public release. Additionally, this 
+[CheatBreakerV2/CheatBreakerAPINetHandler](https://github.com/CheatBreakerV2/CheatBreakerAPINetHandler), which is not publicly available at this time.
 
-**License:** [GNU/GPL v3](https://github.com/CheatBreaker/CheatBreakerAPI/blob/master/LICENSE)
+**License:** [GNU/GPL v3](https://github.com/CheatBreakerV2/CheatBreakerAPI/blob/master/LICENSE)
