@@ -39,6 +39,7 @@ Documentation can be found on the [wiki pages](https://github.com/cheatbreakerv2
 
 **General:** Approved for public release on 12/29/2019.
 
-**Details:** This release is not supported or maintained and was released only to showcase some of the early functionality and things that were possible with the CheatBreaker Bukkit API. Keep in mind, this was an internal version of the API that was going to be overhauled for a public release. Additionally, this project depends on [CheatBreaker/CheatBreakerAPINetHandler](https://github.com/CheatBreakerV2/CheatBreakerAPINetHandler), which is not publicly available at this time.
+**Details:** This release is not supported or maintained and was released only to showcase some of the early functionality and things that were possible with the CheatBreaker Bukkit API. Keep in mind, this was an internal version of the API that was going to be overhauled for a public release. Additionally, this 
+[CheatBreakerV2/CheatBreakerAPINetHandler](https://github.com/CheatBreakerV2/CheatBreakerAPINetHandler), which is not publicly available at this time.
 
 **License:** [GNU/GPL v3](https://github.com/CheatBreakerV2/CheatBreakerAPI/blob/master/LICENSE)
